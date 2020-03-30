@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("images/fondo6.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Permanent Marker', cursive;
+}
+/* La estructura de la pagina es de una sola columna que ocupa 1200px y 5 filas: 1ª y 3ª fila->borde 2ªfila->nav 5ªfila->un espacio vacio y 6ªfila el contenido principal*/
+.wrapper {
+    display: grid;
+    justify-content: center;
+    margin-top: 80px;
+    grid-template-columns: 1200px;
+    grid-template-rows: 3px 40px 3px 20px 1fr;
+    grid-column-gap: 0px;
+}
+/* Colocacion de las areas */
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.div3 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.div4 {
+    grid-area: 5 / 1 / 5 / 2;
+}
+
+.nav {
+    background: #151522;
+    /* El color por los extremos se vuelve transparente */
+    background: radial-gradient(circle, #151522 80%, #151522b4 97%, transparent 100%);
+}
+
+/* la lista es un grid dividio en 5 columnas la ultima siendo de doble tamaño que el resto. La propiedad stretch alarga los items a todo el contenido de la caja */
+.nav>ul {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    color: white;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    list-style: none;
+    justify-items: stretch;
+    align-items: stretch;
+}
+/* Para centrar el convierto cada caja de la lista en un grid y centro el contenido */
+.nav>ul>li {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.nav>ul>li:hover {
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+/* Borde del nav */
+.borde {
+    margin: 0 auto;
+    width: 1215px;
+    background: rgb(246, 204, 7);
+    background: radial-gradient(circle, rgba(246, 204, 7, 1) 70%, rgba(255, 255, 255, 1) 100%);
+}
+/* Caja principal dividida en 2 columnas. A la izq una caja donde situar los pokemons y a la derecha 3 cajas en disposicion vertical */
+.contenedor {
+    margin: 0 auto;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: 600px 600px;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-areas: "main con2" "main con3" "main con4";
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    border: rgb(246, 204, 7) 2px solid;
+}
+/* Para mostrar los pokemons dispongo la caja en una cuadricula de 3 columnas de 200px, las columnas se iran añadiendo con una altura de 150px*/
+.main {
+    background-image: url("images/fondo2.png");
+    background-size: cover;
+    background-position: 70%;
+    grid-area: main;
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-auto-rows: minmax(150px, auto);
+    grid-row-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    /* Para mostrar solo lo que cabe en la caja */
+    overflow-y: scroll;
+    background-color: #435556;
+}
+/* Escondo la barra lateral */
+.main::-webkit-scrollbar {
+    display: none;
+}
+/* La propiedad filter sirve par dar estilos a las imagenes */
+.poke>img {
+    width: 100%;
+    filter: saturate(2);
+}
+.poke>img:hover {
+    width: 115%;
+    transition: all 0.5s ease;
+}
+
+.contenido2 {
+    background-image: url("images/fondoagua.jpg");
+    background-color: #151522;
+    display: grid;
+    align-content: flex-end;
+    background-size: cover;
+    overflow: hidden;
+}
+.contenido2>img{
+    position: relative;
+    left: 20px;
+    top: 80px;
+    width: 200px;
+}
+
+.contenido3 {
+    background-image: url("images/fondohierba.jpg");
+    background-color: #4f567c;
+    grid-area: con3;
+    background-size: cover;
+    display: grid;
+    align-content: flex-end;
+    overflow: hidden;
+}
+.contenido3>img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 200px;
+}
+
+.contenido4 {
+    background-image: url("images/fondofuego.jpg");
+    background-color: #2b2f4f;
+    grid-area: con4;
+    background-size: cover;
+    display: grid;
+    align-content: flex-end;
+    overflow: hidden;
+}
+.contenido4>img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 200px;
+}
+h2 {
+    background-color: #151522;
+    color: whitesmoke;
+    border-bottom: rgb(246, 204, 7) 1px solid;
+    z-index: 2;
+}
+
+/* Propiedades cuando el tamaño de la pantalla es menor de 1200px de ancho */
+@media only screen and (max-width: 1200px) {
+    /* Divido la pagina en 2 columnas, y dos filas: en la primera fila estara la caja de nav y donde se muestran los pokemons, nav estara situado gracias a z-index */
+    .wrapper{
+        grid-template-columns: 100px 500px;
+        grid-template-rows: 500px 600px;;
+    }
+    .borde{
+        display: none;
+    }
+    .nav { 
+        grid-area: 1 / 1 / 2 / 2;
+        z-index: 2;
+        background: #15152263;
+    }
+    /* Ahora la lista se dividira en 1 opcion por fila */
+    .nav>ul {
+        color: white;
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px;
+    }
+    .contenedor { 
+        grid-area: 1 / 1 / 3 / 3;
+        grid-template-columns: 1fr;
+        grid-template-rows: 500px repeat(3, 200px);
+        grid-template-areas: "main"
+                    "con2"
+                    "con3"
+                    "con4";
+    }
+}
