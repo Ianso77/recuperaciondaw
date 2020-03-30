@@ -37,7 +37,7 @@ body {
 }
 
 .nav {
-    background: #151522;
+    background: blueviolet;
     /* El color por los extremos se vuelve transparente */
     background: radial-gradient(circle, #151522 80%, #151522b4 97%, transparent 100%);
 }
